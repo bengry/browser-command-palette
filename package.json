@@ -1,6 +1,7 @@
 {
   "name": "vitesse-webext",
   "displayName": "Vitesse WebExt",
+  "description": "",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -19,7 +20,8 @@
     "start:chromium": "web-ext run --source-dir ./extension --target=chromium",
     "start:firefox": "web-ext run --source-dir ./extension --target=firefox-desktop",
     "clear": "rimraf extension/dist extension/manifest.json extension.*",
-    "lint": "eslint --cache 'src/**/*.{json,ts,js}'"
+    "lint": "eslint --cache 'src/**/*.{json,ts,js}'",
+    "dependencies:deduplicate": "yarn-deduplicate yarn.lock -s fewer && yarn"
   },
   "dependencies": {
     "webext-bridge": "^5.0.2",
@@ -51,6 +53,7 @@
     "unplugin-auto-import": "^0.5.11",
     "vite": "^2.7.13",
     "vite-plugin-windicss": "^1.6.3",
-    "web-ext": "^6.6.0"
+    "web-ext": "^6.6.0",
+    "yarn-deduplicate": "^3.1.0"
   }
 }
