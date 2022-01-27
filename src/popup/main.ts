@@ -1,3 +1,4 @@
-import "../styles";
+/* eslint-disable no-console */
+import '../styles';
 
-console.log("Popup loaded");
+console.log('Popup loaded');

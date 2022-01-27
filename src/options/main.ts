@@ -1,3 +1,5 @@
-import "../styles";
+/* eslint-disable no-console */
 
-console.log("Options page loaded");
+import '../styles';
+
+console.log('Options page loaded');

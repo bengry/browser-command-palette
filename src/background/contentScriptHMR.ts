@@ -1,4 +1,7 @@
-import { isFirefox, isForbiddenUrl } from "@/env";
+/* eslint-disable no-console */
+
+import browser from 'webextension-polyfill';
+import { isFirefox, isForbiddenUrl } from '@/env';
 
 // Firefox fetch files from cache instead of reloading changes from disk,
 // hmr will not work as Chromium based browser
@@ -11,8 +14,8 @@ browser.webNavigation.onCommitted.addListener(({ tabId, frameId, url }) => {
   // inject the latest scripts
   browser.tabs
     .executeScript(tabId, {
-      file: `${isFirefox ? "" : "."}/dist/contentScripts/index.global.js`,
-      runAt: "document_end",
+      file: `${isFirefox ? '' : '.'}/dist/contentScripts/index.global.js`,
+      runAt: 'document_end',
     })
-    .catch((error) => console.error(error));
+    .catch(error => console.error(error));
 });

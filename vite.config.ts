@@ -1,14 +1,10 @@
 import { dirname, relative } from "path";
+import AutoImport from "unplugin-auto-import/vite";
 import type { UserConfig } from "vite";
 import { defineConfig } from "vite";
-import Vue from "@vitejs/plugin-vue";
-import Icons from "unplugin-icons/vite";
-import IconsResolver from "unplugin-icons/resolver";
-import Components from "unplugin-vue-components/vite";
-import AutoImport from "unplugin-auto-import/vite";
 import WindiCSS from "vite-plugin-windicss";
-import windiConfig from "./windi.config";
 import { isDev, port, r } from "./scripts/utils";
+import windiConfig from "./windi.config";
 
 export const sharedConfig: UserConfig = {
   root: r("src"),
@@ -21,50 +17,21 @@ export const sharedConfig: UserConfig = {
     __DEV__: isDev,
   },
   plugins: [
-    Vue(),
-
     AutoImport({
-      imports: [
-        "vue",
-        {
-          "webextension-polyfill": [["default", "browser"]],
-        },
-      ],
       dts: r("src/auto-imports.d.ts"),
     }),
-
-    // https://github.com/antfu/unplugin-vue-components
-    Components({
-      dirs: [r("src/components")],
-      // generate `components.d.ts` for ts support with Volar
-      dts: true,
-      resolvers: [
-        // auto import icons
-        IconsResolver({
-          componentPrefix: "",
-        }),
-      ],
-    }),
-
-    // https://github.com/antfu/unplugin-icons
-    Icons(),
-
     // rewrite assets to use relative path
     {
       name: "assets-rewrite",
       enforce: "post",
       apply: "build",
       transformIndexHtml(html, { path }) {
-        return html.replace(
-          /"\/assets\//g,
-          `"${relative(dirname(path), "/assets")}/`
-        );
+        return html.replace(/"\/assets\//g, `"${relative(dirname(path), "/assets")}/`);
       },
     },
   ],
   optimizeDeps: {
-    include: ["vue", "@vueuse/core", "webextension-polyfill"],
-    exclude: ["vue-demi"],
+    include: ["webextension-polyfill"],
   },
 };
 
