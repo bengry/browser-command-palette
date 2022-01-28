@@ -39,6 +39,14 @@ export async function getManifest() {
       },
     ],
     web_accessible_resources: ['dist/contentScripts/style.css'],
+    commands: {
+      activate: {
+        suggested_key: {
+          default: 'Ctrl+Shift+P',
+        },
+        description: 'Activate the extension',
+      },
+    },
   };
 
   if (isDev) {

@@ -99,7 +99,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['./src/manifest.ts', 'vite.config.ts', 'vite.config.content.ts'],
+        devDependencies: ['./src/manifest.ts', './*.ts', './scripts/*.ts'],
         peerDependencies: true,
       },
     ],

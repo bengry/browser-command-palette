@@ -1,3 +1,4 @@
+import preact from '@preact/preset-vite';
 import { defineConfig } from 'vite';
 import WindiCSS from 'vite-plugin-windicss';
 import packageJson from './package.json';
@@ -15,7 +16,7 @@ export default defineConfig({
     emptyOutDir: false,
     sourcemap: isDev ? 'inline' : false,
     lib: {
-      entry: r('src/contentScripts/index.ts'),
+      entry: r('src/contentScripts/index.tsx'),
       name: packageJson.name,
       formats: ['iife'],
     },
@@ -27,8 +28,8 @@ export default defineConfig({
     },
   },
   plugins: [
-    ...sharedConfig.plugins!,
-
+    ...sharedConfig.plugins,
+    preact(),
     // https://github.com/antfu/vite-plugin-windicss
     WindiCSS({
       config: {

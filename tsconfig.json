@@ -15,7 +15,9 @@
     "types": ["vite/client"],
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
   },
   "exclude": ["dist", "node_modules"]
 }
