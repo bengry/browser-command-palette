@@ -12,6 +12,8 @@ export const sharedConfig: MakeCompulsory<UserConfig, 'plugins'> = {
   resolve: {
     alias: {
       '@/': `${r('src')}/`,
+      react: 'preact/compat',
+      'react-dom': 'preact/compat',
     },
   },
   define: {

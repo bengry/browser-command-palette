@@ -31,7 +31,7 @@ export async function getManifest() {
       48: './assets/icon-512.png',
       128: './assets/icon-512.png',
     },
-    permissions: ['tabs', 'storage', 'activeTab', 'http://*/', 'https://*/'],
+    permissions: ['tabs', 'storage', 'activeTab', 'notifications', 'http://*/', 'https://*/'],
     content_scripts: [
       {
         matches: ['http://*/*', 'https://*/*'],
@@ -40,11 +40,11 @@ export async function getManifest() {
     ],
     web_accessible_resources: ['dist/contentScripts/style.css'],
     commands: {
-      activate: {
+      'show-palette': {
         suggested_key: {
           default: 'Ctrl+Shift+P',
         },
-        description: 'Activate the extension',
+        description: 'Show the command palette',
       },
     },
   };
